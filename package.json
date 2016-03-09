@@ -1,0 +1,20 @@
+{
+  "name": "node-socketio-backbone-chat",
+  "version": "0.0.1",
+  "description": "Node.js Chat Application that uses Socket.io and Backbone.js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewpatterson3001/node-socketio-backbone-chat.git"
+  },
+  "author": "Andrew Patterson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewpatterson3001/node-socketio-backbone-chat/issues"
+  },
+  "homepage": "https://github.com/andrewpatterson3001/node-socketio-backbone-chat#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "socket.io": "^1.4.5"
+  }
+}
