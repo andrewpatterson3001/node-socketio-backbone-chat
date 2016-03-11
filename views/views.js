@@ -1,3 +1,4 @@
+//model
 var MessageModel = Backbone.Model.extend({
   defaults: {
     author: '',
@@ -12,24 +13,35 @@ var MessageModel = Backbone.Model.extend({
   }
 });
 
+//collection
+var MessageList = Backbone.Collection.extend({
+  model: MessageModel
+});
+
+//Create a global collection of messages
+var Messages = new MessageList({});
+
 //view
 var MessageView = Backbone.View.extend({
   el: $('#messages'),
   events: {
-    'click button#add-new-message': 'addNewMessage'
+    'keypress #add-new-message': 'addNewMessage'
   },
   initialize: function () {
-    alert('initializing')
-    //this.addNewMessage();
+    alert('initializing');
+    //this.listenTo(Messages, 'add', this.addNewMessage);
+    Messages.fetch();
   },
   addNewMessage: function (event) {
-    event.preventDefault();
-    var contentToPost = $('#m').val();
-    alert(contentToPost)
+    var contentToPost = $('#add-new-message').val();
+    if (event.keyCode != 13) return;
+    if (!this.contentToPost) return;
+    var message = Messages.create({messageContent: this.contentToPost});
+    var view = new MessageView({model: message});
     this.$el.append($('<li>').text(contentToPost));
-    var newMessage = new MessageModel({messageContent: contentToPost
-    })
+    this.$('#add-new-message').val('');
+  }
 });
 
-firstModel = new MessageModel
-firstView = new MessageView({model: firstModel})
+//firstModel = new MessageModel
+firstView = new MessageView({collection: Messages})
